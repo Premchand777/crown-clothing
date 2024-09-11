@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { createAuthUserWithEmailPassword, createUserDoc } from '../../utils/firebase.utils';
 import FormInput from "../formInput/formInput.component";
+import Button from "../button/button.component";
+import './sign-up-form.styles.scss';
 
 const defaultFormFields = {
   displayName: '',
@@ -33,10 +35,11 @@ const SignUpForm = () => {
       }
     }
   }
-  
+
   return (
-    <div>
-      <h2>Signup with Email & Password</h2>
+    <div className="sign-up-container">
+      <h2>Don't have an account?</h2>
+      <span>Signup with Email and Password</span>
       <form onSubmit={onSubmitHandler}>
         {/* <label htmlFor="dn">Display Name</label>
         <input type="text" name="displayName" id='dn' value={formFields.displayName} onChange={onChangeHandler} autoComplete='true' required /> */}
@@ -84,7 +87,7 @@ const SignUpForm = () => {
           autoComplete='true'
           required
         />
-        <button type="submit">Signup</button>
+        <Button type="submit">Signup</Button>
       </form>
     </div>
   );
