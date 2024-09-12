@@ -1,7 +1,7 @@
 import { useState } from "react";
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/button.component";
-// import "../signUpForm/sign-up-form.styles.scss";
+import "../signUpForm/sign-up-form.styles.scss";
 import { createUserDoc, signInWithEmailPassword, signInWithGooglePopup } from "../../utils/firebase.utils";
 
 const defaultFormFields = {
@@ -17,12 +17,9 @@ const SignInForm = () => {
 
   const onSubmitHandler = async (event) => {
     event.preventDefault();
-    if (formFields.password !== formFields.confirmPassword) {
-      alert("password does not match");
-      return;
-    }
     try {
       const result = await signInWithEmailPassword(formFields.email, formFields.password);
+      setFormFields(defaultFormFields);
       if (result.user) {
         alert('sign in successful');
       }
@@ -38,7 +35,7 @@ const SignInForm = () => {
   }
 
   return (
-    <div>
+    <div className="sign-up-container">
       <h2>I already have an account</h2>
       <span>Signin with your email and password</span>
       <form onSubmit={onSubmitHandler}>
@@ -66,9 +63,11 @@ const SignInForm = () => {
           autoComplete='true'
           required
         />
-        <Button type="submit" buttonType='inverted'>SIGN IN</Button>
+        <div className="buttons-container">
+          <Button type="submit" buttonType='inverted'>SIGN IN</Button>
+          <Button buttonType='google' onClick={logGoogleUser}>GOOGLE SIGN IN</Button>
+        </div>
       </form>
-      <Button type="submit" buttonType='google' onClick={logGoogleUser}>SIGN IN WITH GOOGLE</Button>
     </div>
   );
 }

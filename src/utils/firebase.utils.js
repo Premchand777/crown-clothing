@@ -50,10 +50,8 @@ export const firestoreDB = getFirestore(firebaseApp);
 export const createUserDoc = async (userAuth) => {
   const userDocRef = doc(firestoreDB, 'users', userAuth.uid);
   const userDocSnapshot = await getDoc(userDocRef);
-  // console.log(userDocSnapshot.exists());
   if (!userDocSnapshot.exists()) {
-    const setUserDoc = await setDoc(userDocRef, { id: userAuth.uid, name: userAuth.displayName, email: userAuth.email, createdAt: new Date() });
-    console.log(setUserDoc);
+    await setDoc(userDocRef, { id: userAuth.uid, name: userAuth.displayName, email: userAuth.email, createdAt: new Date() });
   }
 }
 

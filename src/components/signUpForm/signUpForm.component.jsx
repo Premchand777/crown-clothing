@@ -3,7 +3,6 @@ import { createAuthUserWithEmailPassword, createUserDoc } from '../../utils/fire
 import FormInput from "../formInput/formInput.component";
 import Button from "../button/button.component";
 import './sign-up-form.styles.scss';
-import SignInForm from "../signIn/signIn.component";
 
 const defaultFormFields = {
   displayName: '',
@@ -39,7 +38,6 @@ const SignUpForm = () => {
 
   return (
     <div className="sign-up-container">
-      <SignInForm />
       <h2>Don't have an account?</h2>
       <span>Signup with Email and Password</span>
       <form onSubmit={onSubmitHandler}>
